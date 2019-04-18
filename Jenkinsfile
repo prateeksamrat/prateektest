@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-               (withMavenmaven : 'maven-2.2.1'){
+               withMaven(maven : 'maven-2.2.1'){
                  sh 'mvn deploy'
                  }
             }
