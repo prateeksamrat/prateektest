@@ -2,19 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Compile Stage') {
             steps {
-                echo 'Building..'
+               withMaven(maven : 'maven-2.2.1'){
+                 sh 'mvn clean compile'
+                 }
             }
         }
-        stage('Test') {
+        stage('Testing stage') {
             steps {
-                echo 'Testing..'
+               withMaven(maven : 'maven-2.2.1'){
+                 sh 'mvn test'
+                 }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+               (withMavenmaven : 'maven-2.2.1'){
+                 sh 'mvn deploy'
+                 }
             }
         }
     }
